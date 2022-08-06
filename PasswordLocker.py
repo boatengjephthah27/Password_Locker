@@ -1,7 +1,8 @@
 from tkinter import *
+from tkinter import messagebox
 from tkinter.font import BOLD
-import string
-import random as ran
+import random as ran, pyperclip
+
 
 # **************************************** PASSWORD GENRATOR / FUNCTIONS ********************************************
 
@@ -28,21 +29,34 @@ def generate_password():
     Password_input.delete(0, END)
     
     Password_input.insert(0, password)
+    pyperclip.copy(password)
     
     
 
 def save_details():
-    webname = website_input.get()
+    webname = (website_input.get()).capitalize()
     username = mail_input.get()
     passname = Password_input.get()
     
-    with open("passwords.txt","a") as file:
-        file.write(f"{webname}    |    {username}    |    {passname}")
-        file.close()
+    if len(webname) or len(username) or len(passname) == 0:
+        prompt = messagebox.showwarning(
+            title = "Empty Fields",
+            message = "Fields Empty\nAll fields must be filled!"
+        )
+    
+    else:
+        validate = messagebox.askquestion(
+            title = f"{webname} Logins", 
+            message = f"Details Entered: \n\n Website: {webname}\n Username: {username}\n Password: {passname} \n\nDo you want to Save?"
+        )
         
-    website_input.delete(0, END)
-    mail_input.delete(0, END)
-    Password_input.delete(0, END)
+        if validate:
+            with open("passwords.txt","a") as file:
+                file.write(f"{webname}    |    {username}    |    {passname}\n")
+                file.close() 
+            
+            website_input.delete(0, END)
+            Password_input.delete(0, END)
 
 
 # **************************************** SAVE DETAILS ********************************************
