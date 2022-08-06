@@ -6,7 +6,6 @@ import random as ran
 # **************************************** PASSWORD GENRATOR / FUNCTIONS ********************************************
 
 def generate_password():
-    passcodes = ""
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -14,7 +13,6 @@ def generate_password():
     symbols = ['!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '>', '?', '@', '[', ']', '^', '_', '`', '{', '|', '}', '~']
     
     password = ""
-    passlist = []
     
     letters_pass = [ran.choice(letters) for i in range(7)]
     numbers_pass = [ran.choice(numbers) for i in range(5)]
@@ -24,16 +22,25 @@ def generate_password():
     
     ran.shuffle(passcode)
         
-    print(passcode)
-        
+    for value in passcode:
+        password += value        
+    
+    Password_input.delete(0, END)
+    
+    Password_input.insert(0, password)
+    
     
 
-
-generate_password()
+def save_details():
+    webname = website_input.get()
+    username = mail_input.get()
+    passname = Password_input.get()
+    
+    with open("passwords.txt","a") as file:
+        
 
 
 # **************************************** SAVE DETAILS ********************************************
-
 
 
 
@@ -121,7 +128,8 @@ add = Button(
     pady=6,
     highlightthickness=0,
     bg="#C4DDFF",
-    border=1
+    border=1,
+    command=save_details
 )
 add.grid(row=4, column=1, columnspan=2)
 
