@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 from tkinter.font import BOLD
-import random as ran, pyperclip
+import random as ran, pyperclip, json
 
 
 # **************************************** PASSWORD GENRATOR / FUNCTIONS ********************************************
@@ -33,13 +33,24 @@ def generate_password():
     
     
 
+
+
+
+# **************************************** SAVE DETAILS ********************************************
+
 def save_details():
     webname = (website_input.get()).capitalize()
     username = mail_input.get()
     passname = Password_input.get()
+    file_dict = {
+        webname: {
+            "Username": username,
+            "Password": passname
+        },
+    }
     
-    if len(webname) or len(username) or len(passname) == 0:
-        prompt = messagebox.showwarning(
+    if len(webname) == 0 or len(username) == 0 or len(passname) == 0:
+        messagebox.showwarning(
             title = "Empty Fields",
             message = "Fields Empty\nAll fields must be filled!"
         )
@@ -51,15 +62,12 @@ def save_details():
         )
         
         if validate:
-            with open("passwords.txt","a") as file:
-                file.write(f"{webname}    |    {username}    |    {passname}\n")
-                file.close() 
+            with open("passwords.json","w") as file:
+                json.dump(file_dict, file, indent=4)
             
             website_input.delete(0, END)
             Password_input.delete(0, END)
 
-
-# **************************************** SAVE DETAILS ********************************************
 
 
 
