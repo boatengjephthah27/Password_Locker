@@ -62,11 +62,24 @@ def save_details():
         )
         
         if validate:
+            with open("passwords.json","r") as file:
+                data_file = json.load(file)
+                data_file.update(file_dict)
+                
             with open("passwords.json","w") as file:
-                json.dump(file_dict, file, indent=4)
+                json.dump(data_file, file, indent=4)
             
             website_input.delete(0, END)
             Password_input.delete(0, END)
+
+
+
+
+
+
+# **************************************** FIND DETAILS ********************************************
+
+
 
 
 
@@ -110,17 +123,17 @@ Password.grid(row=3, column=0)
 
 # inputs
 website_input = Entry(
-    font= ("CURSIVE", 18),
-    width=47, 
+    font= ("CURSIVE", 20),
+    width=28, 
     bg="#F9F9F9", 
     highlightthickness=0
 )
 website_input.focus()
-website_input.grid(row=1, column=1, columnspan=2)
+website_input.grid(row=1, column=1)
 
 mail_input = Entry(
-    font= ("CURSIVE", 18),
-    width=47, 
+    font= ("CURSIVE", 20),
+    width=44, 
     bg="#F9F9F9", 
     highlightthickness=0
 )
@@ -128,8 +141,8 @@ mail_input.insert(END,"boatengjephthah27@gmail.com")
 mail_input.grid(row=2, column=1, columnspan=2)
 
 Password_input = Entry(
-    font= ("CURSIVE", 18),
-    width=29, 
+    font= ("CURSIVE", 20),
+    width=28, 
     bg="#F9F9F9", 
     highlightthickness=0
 )
@@ -137,9 +150,21 @@ Password_input.grid(row=3, column=1)
 
 
 # Buttons
+search_Btn = Button(
+    text="Search Details",
+    font=("CURSIVE", 20),
+    pady=3,
+    highlightthickness=0,
+    bg="#C4DDFF",
+    border=1,
+    padx=24,
+    command=find
+)
+search_Btn.grid(row=1, column=2)
+
 generate = Button(
     text="Generate Password",
-    font=("CURSIVE", 18),
+    font=("CURSIVE", 20),
     pady=3,
     highlightthickness=0,
     bg="#C4DDFF",
@@ -150,8 +175,8 @@ generate.grid(row=3, column=2)
 
 add = Button(
     text="Add Details",
-    font=("CURSIVE", 18, BOLD),
-    width=41,
+    font=("CURSIVE", 20, BOLD),
+    width=42,
     pady=6,
     highlightthickness=0,
     bg="#C4DDFF",
