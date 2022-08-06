@@ -132,10 +132,10 @@ def find():
 # **************************************** GUI ********************************************
 app = Tk()
 app.title("Password Manager")
-app.config(padx=35, pady=50, bg="#C4DDFF")
+app.config(padx=35, pady=50, bg="#002B5B")
 
 # image
-canvas = Canvas(width=300, height=300, bg="#C4DDFF", highlightthickness=0)
+canvas = Canvas(width=300, height=300, bg="#002B5B", highlightthickness=0)
 img = PhotoImage(file='plbg1.png')
 img_label = canvas.create_image(150, 150, image=img)
 canvas.grid(row=0, column=1)
@@ -144,21 +144,24 @@ canvas.grid(row=0, column=1)
 website = Label(
     text="Website:",
     font= ("CURSIVE", 20), 
-    bg="#C4DDFF"
+    bg="#002B5B",
+    fg="white"
 )
 website.grid(row=1, column=0)
 
 mail = Label(
     text="Email/Username:",
     font= ("CURSIVE", 20), 
-    bg="#C4DDFF"
+    bg="#002B5B",
+    fg="white",
 )
 mail.grid(row=2, column=0)
 
 Password = Label(
     text="Password:",
     font= ("CURSIVE", 20), 
-    bg="#C4DDFF"
+    bg="#002B5B",
+    fg="white"
 )
 Password.grid(row=3, column=0)
 
@@ -196,9 +199,10 @@ search_Btn = Button(
     font=("CURSIVE", 20),
     pady=3,
     highlightthickness=0,
-    bg="#C4DDFF",
+    bg="#002B5B",
     border=1,
     padx=24,
+    borderwidth=2,
     command=find
 )
 search_Btn.grid(row=1, column=2)
@@ -208,8 +212,9 @@ generate = Button(
     font=("CURSIVE", 20),
     pady=3,
     highlightthickness=0,
-    bg="#C4DDFF",
+    bg="#002B5B",
     border=1,
+    borderwidth=2,
     command=generate_password
 )
 generate.grid(row=3, column=2)
@@ -220,8 +225,9 @@ add = Button(
     width=42,
     pady=6,
     highlightthickness=0,
-    bg="#C4DDFF",
+    bg="#002B5B",
     border=1,
+    borderwidth=2,
     command=save_details
 )
 add.grid(row=4, column=1, columnspan=2)
