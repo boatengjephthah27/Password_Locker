@@ -37,7 +37,12 @@ def save_details():
     passname = Password_input.get()
     
     with open("passwords.txt","a") as file:
+        file.write(f"{webname}    |    {username}    |    {passname}")
+        file.close()
         
+    website_input.delete(0, END)
+    mail_input.delete(0, END)
+    Password_input.delete(0, END)
 
 
 # **************************************** SAVE DETAILS ********************************************
@@ -97,7 +102,7 @@ mail_input = Entry(
     bg="#F9F9F9", 
     highlightthickness=0
 )
-mail_input.insert(END,"@gmail.com")
+mail_input.insert(END,"boatengjephthah27@gmail.com")
 mail_input.grid(row=2, column=1, columnspan=2)
 
 Password_input = Entry(
