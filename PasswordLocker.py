@@ -62,14 +62,23 @@ def save_details():
         )
         
         if validate:
-            messagebox.showinfo(title="Saved", message="Details Saved!")
-            with open("passwords.json","r") as file:
-                data_file = json.load(file)
-                data_file.update(file_dict)
-                
-            with open("passwords.json","w") as file:
-                json.dump(data_file, file, indent=4)
+            try:
+                with open("passwords.json","r") as file:
+                    data_file = json.load(file)
+                    data_file.update(file_dict)
             
+            except FileNotFoundError:
+                with open("passwords.json","w") as file:
+                    json.dump(file_dict, file, indent=4)
+                messagebox.showinfo(title="Saved", message="Details Saved!")
+            
+            else:
+                with open("passwords.json","w") as file:
+                    json.dump(data_file, file, indent=4)
+                    
+                messagebox.showinfo(title="Saved", message="Details Saved!")
+                    
+                    
             website_input.delete(0, END)
             Password_input.delete(0, END)
 
