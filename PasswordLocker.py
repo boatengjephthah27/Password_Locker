@@ -1,6 +1,7 @@
 from tkinter import *
+from tkinter.font import BOLD
 
-# **************************************** PASSWORD GENRATOR ********************************************
+# **************************************** PASSWORD GENRATOR / FUNCTIONS ********************************************
 
 
 
@@ -20,10 +21,10 @@ from tkinter import *
 # **************************************** GUI ********************************************
 app = Tk()
 app.title("Password Manager")
-app.config(padx=30, pady=50)
+app.config(padx=35, pady=50, bg="#C4DDFF")
 
 # image
-canvas = Canvas(width=300, height=300)
+canvas = Canvas(width=300, height=300, bg="#C4DDFF", highlightthickness=0)
 img = PhotoImage(file='plbg1.png')
 img_label = canvas.create_image(150, 150, image=img)
 canvas.grid(row=0, column=1)
@@ -31,38 +32,49 @@ canvas.grid(row=0, column=1)
 # labels
 website = Label(
     text="Website:",
-    font= ("COURIER", 20)
+    font= ("CURSIVE", 20), 
+    bg="#C4DDFF"
 )
 website.grid(row=1, column=0)
 
 mail = Label(
     text="Email/Username:",
-    font= ("COURIER", 20)
+    font= ("CURSIVE", 20), 
+    bg="#C4DDFF"
 )
 mail.grid(row=2, column=0)
 
 Password = Label(
     text="Password:",
-    font= ("COURIER", 20)
+    font= ("CURSIVE", 20), 
+    bg="#C4DDFF"
 )
 Password.grid(row=3, column=0)
 
 # inputs
 website_input = Entry(
-    font= ("COURIER", 18),
-    width=40
+    font= ("CURSIVE", 18),
+    width=47, 
+    bg="#F9F9F9", 
+    highlightthickness=0
 )
+website_input.focus()
 website_input.grid(row=1, column=1, columnspan=2)
 
 mail_input = Entry(
-    font= ("COURIER", 18),
-    width=40
+    font= ("CURSIVE", 18),
+    width=47, 
+    bg="#F9F9F9", 
+    highlightthickness=0
 )
+mail_input.insert(END,"@gmail.com")
 mail_input.grid(row=2, column=1, columnspan=2)
 
 Password_input = Entry(
-    font= ("COURIER", 18),
-    width=40
+    font= ("CURSIVE", 18),
+    width=29, 
+    bg="#F9F9F9", 
+    highlightthickness=0
 )
 Password_input.grid(row=3, column=1)
 
@@ -70,18 +82,24 @@ Password_input.grid(row=3, column=1)
 # Buttons
 generate = Button(
     text="Generate Password",
-    font=("COURIER", 18),
-    pady=3
+    font=("CURSIVE", 18),
+    pady=3,
+    highlightthickness=0,
+    bg="#C4DDFF",
+    border=1
 )
 generate.grid(row=3, column=2)
 
 add = Button(
     text="Add Details",
-    font=("COURIER", 18),
-    padx=280,
-    pady=10
+    font=("CURSIVE", 18, BOLD),
+    width=41,
+    pady=6,
+    highlightthickness=0,
+    bg="#C4DDFF",
+    border=1
 )
-add.grid(row=4, column=0, columnspan=3)
+add.grid(row=4, column=1, columnspan=2)
 
 
 
