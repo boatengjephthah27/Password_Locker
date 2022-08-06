@@ -62,6 +62,7 @@ def save_details():
         )
         
         if validate:
+            messagebox.showinfo(title="Saved", message="Details Saved!")
             with open("passwords.json","r") as file:
                 data_file = json.load(file)
                 data_file.update(file_dict)
@@ -80,7 +81,8 @@ def save_details():
 # **************************************** FIND DETAILS ********************************************
 
 
-
+def find():
+    pass
 
 
 
