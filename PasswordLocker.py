@@ -58,7 +58,7 @@ def save_details():
     else:
         validate = messagebox.askquestion(
             title = f"{webname} Logins", 
-            message = f"Details Entered: \n\n Website: {webname}\n Username: {username}\n Password: {passname} \n\nDo you want to Save?"
+            message = f"Details Entered: \n\n Website: {webname}\n Username: \n{username}\n Password: \n{passname} \n\nDo you want to Save?"
         )
         
         if validate:
@@ -91,7 +91,37 @@ def save_details():
 
 
 def find():
-    pass
+    webname = (website_input.get()).capitalize()
+    popmsg = f"\"{webname}\" Website Logins\n\n"
+    
+    try:
+        with open("passwords.json", "r") as passwords:
+            file = json.load(passwords)
+        
+    except FileNotFoundError:
+        messagebox.showerror(title="File Not Found", message="Data File does not Exist!")
+
+    else:
+        if webname in file:
+            key = file[webname]
+            for keys, values in key.items():
+                key = keys
+                value = values                
+                popmsg += f"{key}: \n{value}\n"
+                
+            messagebox.showinfo(title="Website Logins", message=popmsg)
+            pyperclip.copy(value)
+            
+            
+        else:
+            messagebox.showerror(title="File Not Found", message=f"Logins for \"{webname}\" does not Exist!")
+        
+    finally:          
+        website_input.delete(0, END)
+        Password_input.delete(0, END)
+        
+        
+    
 
 
 
