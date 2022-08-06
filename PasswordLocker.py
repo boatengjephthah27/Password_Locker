@@ -5,7 +5,8 @@ import random as ran
 
 # **************************************** PASSWORD GENRATOR / FUNCTIONS ********************************************
 
-def generate():
+def generate_password():
+    passcodes = ""
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
     
     numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -15,15 +16,20 @@ def generate():
     password = ""
     passlist = []
     
-    letters_pass = ran.choice()
+    letters_pass = [ran.choice(letters) for i in range(7)]
+    numbers_pass = [ran.choice(numbers) for i in range(5)]
+    symbols_pass = [ran.choice(symbols) for i in range(3)]
     
+    passcode = letters_pass + numbers_pass + symbols_pass
+    
+    ran.shuffle(passcode)
         
-    print(letters_pass)
+    print(passcode)
         
     
 
 
-generate()
+generate_password()
 
 
 # **************************************** SAVE DETAILS ********************************************
@@ -103,7 +109,8 @@ generate = Button(
     pady=3,
     highlightthickness=0,
     bg="#C4DDFF",
-    border=1
+    border=1,
+    command=generate_password
 )
 generate.grid(row=3, column=2)
 
