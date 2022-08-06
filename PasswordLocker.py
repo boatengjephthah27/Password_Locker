@@ -77,10 +77,10 @@ def save_details():
                     json.dump(data_file, file, indent=4)
                     
                 messagebox.showinfo(title="Saved", message="Details Saved!")
-                    
-                    
-            website_input.delete(0, END)
-            Password_input.delete(0, END)
+                
+            finally:          
+                website_input.delete(0, END)
+                Password_input.delete(0, END)
 
 
 
